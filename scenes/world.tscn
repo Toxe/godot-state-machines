@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dn18x5gkv5ki6"]
+[gd_scene load_steps=4 format=3 uid="uid://dn18x5gkv5ki6"]
 
 [ext_resource type="PackedScene" uid="uid://ch08qkqvu0tvo" path="res://scenes/wall.tscn" id="1_f7bvh"]
 [ext_resource type="PackedScene" uid="uid://bqi7rvotgft2y" path="res://scenes/player.tscn" id="2_x0ahe"]
+[ext_resource type="PackedScene" uid="uid://bvlji4x1raroh" path="res://scenes/blue_guard/blue_guard.tscn" id="3_atp2t"]
 
 [node name="World" type="Node2D"]
 
@@ -43,3 +44,9 @@ scale = Vector2(1, 8)
 
 [node name="Player" parent="." instance=ExtResource("2_x0ahe")]
 position = Vector2(75, 289)
+
+[node name="BlueGuard1" parent="." instance=ExtResource("3_atp2t")]
+position = Vector2(1100, 131)
+
+[node name="BlueGuard2" parent="." instance=ExtResource("3_atp2t")]
+position = Vector2(1195, 621)
