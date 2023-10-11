@@ -3,6 +3,16 @@ config_version=5
 [application]
 
 config/name="State Machines"
+run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
-config/tags=PackedStringArray("test")
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
+[layer_names]
+
+2d_physics/layer_1="wall"
+2d_physics/layer_2="player"
