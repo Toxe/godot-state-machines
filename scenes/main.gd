@@ -6,6 +6,11 @@ func _ready() -> void:
     update_window_title()
 
 
+func _unhandled_key_input(event: InputEvent) -> void:
+    if event.is_action_pressed("ui_cancel"):
+        get_tree().quit()
+
+
 func create_window_title_update_timer() -> void:
     var timer := Timer.new()
     add_child(timer)
