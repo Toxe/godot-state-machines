@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqi7rvotgft2y"]
+[gd_scene load_steps=5 format=3 uid="uid://bqi7rvotgft2y"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_5s3yw"]
+[ext_resource type="PackedScene" uid="uid://c1dv836kurumi" path="res://state_machine/state_machine.tscn" id="2_jusgr"]
+[ext_resource type="Script" path="res://scenes/player/state/walk.gd" id="3_wnvhw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qlsyu"]
 radius = 20.0
@@ -26,3 +28,9 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 1, 0, 1)
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_jusgr")]
+initial_state = NodePath("walk")
+
+[node name="walk" type="Node" parent="StateMachine"]
+script = ExtResource("3_wnvhw")
