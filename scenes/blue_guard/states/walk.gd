@@ -12,6 +12,9 @@ func _ready() -> void:
 
 
 func enter() -> void:
+    var guard := owner as BlueGuard
+    guard.get_node("AnimationPlayer").play("walk")
+
     move_to = find_new_destination()
 
 
