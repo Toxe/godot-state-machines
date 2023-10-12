@@ -1,6 +1,6 @@
 extends State
 
-const speed := 100.0
+const speed := 50.0
 
 @export var player_spotted_state: State = null
 
