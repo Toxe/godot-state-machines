@@ -1,6 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvlji4x1raroh"]
+[gd_scene load_steps=9 format=3 uid="uid://bvlji4x1raroh"]
 
 [ext_resource type="Script" path="res://scenes/blue_guard/blue_guard.gd" id="1_7bfl7"]
+[ext_resource type="PackedScene" uid="uid://c1dv836kurumi" path="res://state_machine/state_machine.tscn" id="2_2jvxd"]
+[ext_resource type="Script" path="res://scenes/blue_guard/states/idle.gd" id="3_86u0u"]
+[ext_resource type="Script" path="res://scenes/blue_guard/states/walk.gd" id="4_e2dmg"]
+[ext_resource type="Script" path="res://scenes/blue_guard/states/player_spotted.gd" id="5_r3dyb"]
+[ext_resource type="Script" path="res://scenes/blue_guard/states/follow_player.gd" id="6_rqn6i"]
+[ext_resource type="Script" path="res://scenes/blue_guard/states/player_lost.gd" id="7_h5y3y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6n4mb"]
 radius = 20.0
@@ -26,3 +32,30 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.145098, 0.380392, 1, 1)
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_2jvxd")]
+initial_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state")]
+script = ExtResource("3_86u0u")
+walk_state = NodePath("../walk")
+
+[node name="walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("player_spotted_state")]
+script = ExtResource("4_e2dmg")
+player_spotted_state = NodePath("../player_spotted")
+
+[node name="Line2D" type="Line2D" parent="StateMachine/walk"]
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(0.145098, 0.380392, 1, 0.368627)
+
+[node name="player_spotted" type="Node" parent="StateMachine" node_paths=PackedStringArray("follow_player_state")]
+script = ExtResource("5_r3dyb")
+follow_player_state = NodePath("../follow_player")
+
+[node name="follow_player" type="Node" parent="StateMachine" node_paths=PackedStringArray("player_lost_state")]
+script = ExtResource("6_rqn6i")
+player_lost_state = NodePath("../player_lost")
+
+[node name="player_lost" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("7_h5y3y")
+idle_state = NodePath("../idle")
