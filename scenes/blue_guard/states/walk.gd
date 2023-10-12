@@ -18,8 +18,7 @@ func enter() -> void:
 func physics_process(_delta: float) -> State:
     var guard := owner as BlueGuard
 
-    $Line2D.points[0] = guard.position
-    $Line2D.points[1] = move_to
+    update_line()
 
     guard.velocity = guard.position.direction_to(move_to) * speed
     guard.look_at(move_to)
@@ -42,3 +41,10 @@ func find_new_destination() -> Vector2:
     var x := randf_range(50, ProjectSettings.get_setting("display/window/size/viewport_width") - 50)
     var y := randf_range(50, ProjectSettings.get_setting("display/window/size/viewport_height") - 50)
     return Vector2(x, y)
+
+
+func update_line() -> void:
+    var guard := owner as BlueGuard
+    $Line2D.points[0] = guard.position + guard.transform.x * 30.0
+    $Line2D.points[1] = move_to
+    $Line2D.visible = guard.position.distance_to($Line2D.points[1]) > 30.0
