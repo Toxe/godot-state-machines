@@ -4,6 +4,12 @@ var player_in_range := false
 var player_detected := false
 
 
+func _process(_delta: float) -> void:
+    if $PlayerSpottedIcon.visible:
+        $PlayerSpottedIcon.global_position = global_position + Vector2(0, -80)
+        $PlayerSpottedIcon.global_rotation = 0
+
+
 func _physics_process(_delta: float) -> void:
     if player_in_range:
         player_detected = false
