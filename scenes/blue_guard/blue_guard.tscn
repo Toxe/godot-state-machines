@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bvlji4x1raroh"]
+[gd_scene load_steps=19 format=3 uid="uid://bvlji4x1raroh"]
 
 [ext_resource type="Script" path="res://scenes/blue_guard/blue_guard.gd" id="1_7bfl7"]
 [ext_resource type="PackedScene" uid="uid://c1dv836kurumi" path="res://state_machine/state_machine.tscn" id="2_2jvxd"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scenes/blue_guard/states/follow_player.gd" id="6_rqn6i"]
 [ext_resource type="Script" path="res://scenes/blue_guard/states/player_lost.gd" id="7_h5y3y"]
 [ext_resource type="Texture2D" uid="uid://vn8q8kfw6tkp" path="res://assets/images/guard/player_spotted.svg" id="8_v6sjr"]
+[ext_resource type="Texture2D" uid="uid://13cd1hx1fosw" path="res://assets/images/guard/player_lost.svg" id="9_3wiw8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6n4mb"]
 radius = 20.0
@@ -48,6 +49,18 @@ tracks/2/path = NodePath("PlayerSpottedIcon:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerLostIcon:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -129,10 +142,26 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_doall"]
 resource_name = "run"
 
+[sub_resource type="Animation" id="Animation_rwyc0"]
+resource_name = "player_lost"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerLostIcon:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k0opl"]
 _data = {
 "RESET": SubResource("Animation_bedvk"),
 "idle": SubResource("Animation_weh2p"),
+"player_lost": SubResource("Animation_rwyc0"),
 "player_spotted": SubResource("Animation_0khst"),
 "run": SubResource("Animation_doall"),
 "walk": SubResource("Animation_20aey")
@@ -285,5 +314,12 @@ z_index = 5
 position = Vector2(0, -80)
 texture = ExtResource("8_v6sjr")
 
+[node name="PlayerLostIcon" type="Sprite2D" parent="."]
+visible = false
+z_index = 5
+position = Vector2(0, -80)
+texture = ExtResource("9_3wiw8")
+
+[connection signal="timeout" from="StateMachine/follow_player/PlayerLostTimer" to="StateMachine/follow_player" method="_on_player_lost_timer_timeout"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]

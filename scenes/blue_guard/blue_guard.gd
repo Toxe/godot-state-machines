@@ -8,6 +8,9 @@ func _process(_delta: float) -> void:
     if $PlayerSpottedIcon.visible:
         $PlayerSpottedIcon.global_position = global_position + Vector2(0, -80)
         $PlayerSpottedIcon.global_rotation = 0
+    if $PlayerLostIcon.visible:
+        $PlayerLostIcon.global_position = global_position + Vector2(0, -80)
+        $PlayerLostIcon.global_rotation = 0
 
 
 func _physics_process(_delta: float) -> void:
