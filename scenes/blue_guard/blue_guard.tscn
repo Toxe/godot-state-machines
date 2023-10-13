@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bvlji4x1raroh"]
+[gd_scene load_steps=20 format=3 uid="uid://bvlji4x1raroh"]
 
 [ext_resource type="Script" path="res://scenes/blue_guard/blue_guard.gd" id="1_7bfl7"]
 [ext_resource type="PackedScene" uid="uid://c1dv836kurumi" path="res://state_machine/state_machine.tscn" id="2_2jvxd"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scenes/blue_guard/states/player_lost.gd" id="7_h5y3y"]
 [ext_resource type="Texture2D" uid="uid://vn8q8kfw6tkp" path="res://assets/images/guard/player_spotted.svg" id="8_v6sjr"]
 [ext_resource type="Texture2D" uid="uid://13cd1hx1fosw" path="res://assets/images/guard/player_lost.svg" id="9_3wiw8"]
+[ext_resource type="Texture2D" uid="uid://b75wqpqc0yiuh" path="res://assets/images/guard/player_detection_area.svg" id="10_nogrx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6n4mb"]
 radius = 20.0
@@ -189,7 +190,7 @@ player_spotted_state = NodePath("../player_spotted")
 [node name="Line2D" type="Line2D" parent="StateMachine/walk"]
 visible = false
 points = PackedVector2Array(0, 0, 0, 0)
-default_color = Color(0.145098, 0.380392, 1, 0.368627)
+default_color = Color(0.145098, 0.380392, 1, 0.521569)
 
 [node name="player_spotted" type="Node" parent="StateMachine" node_paths=PackedStringArray("follow_player_state")]
 script = ExtResource("5_r3dyb")
@@ -232,6 +233,11 @@ collision_mask = 7
 enabled = false
 target_position = Vector2(300, 20)
 collision_mask = 7
+
+[node name="Polygon2D" type="Polygon2D" parent="PlayerDetector"]
+z_index = 4
+color = Color(1, 1, 0, 0.141176)
+polygon = PackedVector2Array(300, -20, 300, 0, 300, 20, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -321,6 +327,11 @@ visible = false
 z_index = 5
 position = Vector2(0, -80)
 texture = ExtResource("9_3wiw8")
+
+[node name="PlayerDetectionAreaSprite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 0.137255)
+z_index = 4
+texture = ExtResource("10_nogrx")
 
 [connection signal="timeout" from="StateMachine/follow_player/PlayerLostTimer" to="StateMachine/follow_player" method="_on_player_lost_timer_timeout"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
