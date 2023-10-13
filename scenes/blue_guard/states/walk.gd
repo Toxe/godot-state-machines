@@ -21,6 +21,9 @@ func enter() -> void:
 func physics_process(_delta: float) -> State:
     var guard := owner as BlueGuard
 
+    if guard.player_detected:
+        return player_spotted_state
+
     update_line()
 
     guard.velocity = guard.position.direction_to(move_to) * speed
