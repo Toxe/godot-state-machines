@@ -14,6 +14,7 @@ func _ready() -> void:
 
 func enter() -> void:
     var guard := owner as BlueGuard
+    guard.get_node("PlayerDetector").scale = Vector2(1.5, 1.5)
     guard.get_node("AnimationPlayer").play("run")
 
     move_to = get_player_position()
@@ -22,6 +23,9 @@ func enter() -> void:
 
 
 func exit() -> void:
+    var guard := owner as BlueGuard
+    guard.get_node("PlayerDetector").scale = Vector2(1.0, 1.0)
+
     $Line2D.visible = false
 
 

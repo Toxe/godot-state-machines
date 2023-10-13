@@ -264,6 +264,11 @@ z_index = 4
 color = Color(1, 1, 0, 0.141176)
 polygon = PackedVector2Array(300, -20, 300, 0, 300, 20, 0, 0)
 
+[node name="PlayerDetectionAreaSprite" type="Sprite2D" parent="PlayerDetector"]
+modulate = Color(1, 1, 0, 0.137255)
+z_index = 4
+texture = ExtResource("10_nogrx")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_k0opl")
@@ -352,11 +357,6 @@ visible = false
 z_index = 5
 position = Vector2(0, -80)
 texture = ExtResource("9_3wiw8")
-
-[node name="PlayerDetectionAreaSprite" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 0, 0.137255)
-z_index = 4
-texture = ExtResource("10_nogrx")
 
 [connection signal="timeout" from="StateMachine/follow_player/PlayerLostTimer" to="StateMachine/follow_player" method="_on_player_lost_timer_timeout"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
