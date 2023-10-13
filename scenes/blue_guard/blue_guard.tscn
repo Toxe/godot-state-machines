@@ -126,11 +126,15 @@ tracks/0/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_doall"]
+resource_name = "run"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k0opl"]
 _data = {
 "RESET": SubResource("Animation_bedvk"),
 "idle": SubResource("Animation_weh2p"),
 "player_spotted": SubResource("Animation_0khst"),
+"run": SubResource("Animation_doall"),
 "walk": SubResource("Animation_20aey")
 }
 
@@ -165,6 +169,13 @@ follow_player_state = NodePath("../follow_player")
 script = ExtResource("6_rqn6i")
 player_lost_state = NodePath("../player_lost")
 
+[node name="Line2D" type="Line2D" parent="StateMachine/follow_player"]
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(1, 0, 0, 0.368627)
+
+[node name="PlayerLostTimer" type="Timer" parent="StateMachine/follow_player"]
+one_shot = true
+
 [node name="player_lost" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("7_h5y3y")
 idle_state = NodePath("../idle")
@@ -177,14 +188,17 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_8wqqx")
 
 [node name="RayCast2D1" type="RayCast2D" parent="PlayerDetector"]
+enabled = false
 target_position = Vector2(300, 0)
 collision_mask = 7
 
 [node name="RayCast2D2" type="RayCast2D" parent="PlayerDetector"]
+enabled = false
 target_position = Vector2(300, -20)
 collision_mask = 7
 
 [node name="RayCast2D3" type="RayCast2D" parent="PlayerDetector"]
+enabled = false
 target_position = Vector2(300, 20)
 collision_mask = 7
 
