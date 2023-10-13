@@ -187,6 +187,7 @@ script = ExtResource("4_e2dmg")
 player_spotted_state = NodePath("../player_spotted")
 
 [node name="Line2D" type="Line2D" parent="StateMachine/walk"]
+visible = false
 points = PackedVector2Array(0, 0, 0, 0)
 default_color = Color(0.145098, 0.380392, 1, 0.368627)
 
@@ -199,6 +200,7 @@ script = ExtResource("6_rqn6i")
 player_lost_state = NodePath("../player_lost")
 
 [node name="Line2D" type="Line2D" parent="StateMachine/follow_player"]
+visible = false
 points = PackedVector2Array(0, 0, 0, 0)
 default_color = Color(1, 0, 0, 0.368627)
 

@@ -18,6 +18,12 @@ func enter() -> void:
 
     move_to = get_player_position()
 
+    $Line2D.visible = true
+
+
+func exit() -> void:
+    $Line2D.visible = false
+
 
 func physics_process(_delta: float) -> State:
     var guard := owner as BlueGuard

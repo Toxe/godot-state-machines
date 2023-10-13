@@ -17,6 +17,12 @@ func enter() -> void:
 
     move_to = find_new_destination()
 
+    $Line2D.visible = true
+
+
+func exit() -> void:
+    $Line2D.visible = false
+
 
 func physics_process(_delta: float) -> State:
     var guard := owner as BlueGuard
