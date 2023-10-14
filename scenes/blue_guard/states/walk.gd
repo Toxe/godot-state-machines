@@ -7,10 +7,6 @@ const speed := 50.0
 var move_to := Vector2.ZERO
 
 
-func _ready() -> void:
-    assert(player_spotted_state != null)
-
-
 func enter() -> void:
     var guard := owner as BlueGuard
     guard.get_node("AnimationPlayer").play("walk")

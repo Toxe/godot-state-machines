@@ -3,10 +3,6 @@ extends State
 @export var follow_player_state: State = null
 
 
-func _ready() -> void:
-    assert(follow_player_state != null)
-
-
 func enter() -> void:
     var guard := owner as BlueGuard
     guard.get_node("AnimationPlayer").play("player_spotted")
