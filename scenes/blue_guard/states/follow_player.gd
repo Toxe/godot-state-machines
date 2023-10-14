@@ -18,6 +18,7 @@ func enter() -> void:
     guard.get_node("AnimationPlayer").play("run")
 
     move_to = get_player_position()
+    player_got_away = false
 
     $Line2D.visible = true
 
