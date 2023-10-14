@@ -96,33 +96,19 @@ tracks/1/keys = {
 "values": [Vector2(-12, 12)]
 }
 
-[sub_resource type="Animation" id="Animation_20aey"]
-resource_name = "walk"
-length = 2.0
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_rwyc0"]
+resource_name = "player_lost"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite/ColorRect4:position")
-tracks/0/interp = 2
+tracks/0/path = NodePath("PlayerLostIcon:visible")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-16, -18), Vector2(-6, -18)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite/ColorRect5:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-6, 12), Vector2(-16, 12)]
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_0khst"]
@@ -168,19 +154,33 @@ tracks/1/keys = {
 "values": [Vector2(1, 12), Vector2(-19, 12)]
 }
 
-[sub_resource type="Animation" id="Animation_rwyc0"]
-resource_name = "player_lost"
+[sub_resource type="Animation" id="Animation_20aey"]
+resource_name = "walk"
+length = 2.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerLostIcon:visible")
-tracks/0/interp = 1
+tracks/0/path = NodePath("Sprite/ColorRect4:position")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"update": 0,
+"values": [Vector2(-16, -18), Vector2(-6, -18)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/ColorRect5:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-6, 12), Vector2(-16, 12)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k0opl"]
@@ -231,6 +231,7 @@ points = PackedVector2Array(0, 0, 0, 0)
 default_color = Color(1, 0, 0, 0.368627)
 
 [node name="PlayerLostTimer" type="Timer" parent="StateMachine/follow_player"]
+wait_time = 5.0
 one_shot = true
 
 [node name="player_lost" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
