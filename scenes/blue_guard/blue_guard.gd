@@ -12,6 +12,9 @@ func _process(_delta: float) -> void:
         $PlayerLostIcon.global_position = global_position + Vector2(0, -80)
         $PlayerLostIcon.global_rotation = 0
 
+    var player := get_tree().get_first_node_in_group("player") as Player
+    $PlayerDetector.look_at(player.position)
+
 
 func _physics_process(_delta: float) -> void:
     if player_in_range:
@@ -24,9 +27,6 @@ func _physics_process(_delta: float) -> void:
             if collider and collider is Player:
                 player_detected = true
                 break
-
-        var player := get_tree().get_first_node_in_group("player") as Player
-        $PlayerDetector.look_at(player.position)
 
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
