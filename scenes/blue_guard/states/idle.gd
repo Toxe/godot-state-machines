@@ -2,9 +2,14 @@ extends State
 
 @export var walk_state: State = null
 
+var guard: BlueGuard = null
+
+
+func setup(_sm: StateMachine) -> void:
+    guard = owner as BlueGuard
+
 
 func enter() -> void:
-    var guard := owner as BlueGuard
     guard.get_node("AnimationPlayer").play("idle")
 
 

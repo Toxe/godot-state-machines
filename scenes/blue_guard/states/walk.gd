@@ -4,15 +4,17 @@ const speed := 50.0
 
 @export var player_spotted_state: State = null
 
+var guard: BlueGuard = null
 var move_to := Vector2.ZERO
 
 
+func setup(_sm: StateMachine) -> void:
+    guard = owner as BlueGuard
+
+
 func enter() -> void:
-    var guard := owner as BlueGuard
     guard.get_node("AnimationPlayer").play("walk")
-
     move_to = find_new_destination()
-
     $Line2D.visible = true
 
 
@@ -21,8 +23,6 @@ func exit() -> void:
 
 
 func physics_process(_delta: float) -> State:
-    var guard := owner as BlueGuard
-
     if guard.player_detected:
         return player_spotted_state
 
@@ -52,7 +52,6 @@ func find_new_destination() -> Vector2:
 
 
 func update_line() -> void:
-    var guard := owner as BlueGuard
     $Line2D.points[0] = guard.position + guard.transform.x * 30.0
     $Line2D.points[1] = move_to
     $Line2D.visible = guard.position.distance_to($Line2D.points[1]) > 30.0

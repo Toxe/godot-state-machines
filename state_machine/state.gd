@@ -18,6 +18,8 @@ func assert_all_exported_state_nodes_are_not_null() -> void:
 
 
 # ---- State interface ------------------------------------------------------
+func setup(_sm: StateMachine) -> void: pass
+
 func enter() -> void: pass
 func exit() -> void: pass
 
