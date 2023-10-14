@@ -14,21 +14,15 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-    var new_state := current_state.process(delta)
-    if new_state:
-        change_state(new_state)
+    change_state(current_state.process(delta))
 
 
 func _physics_process(delta: float) -> void:
-    var new_state := current_state.physics_process(delta)
-    if new_state:
-        change_state(new_state)
+    change_state(current_state.physics_process(delta))
 
 
 func _unhandled_input(event: InputEvent) -> void:
-    var new_state := current_state.unhandled_input(event)
-    if new_state:
-        change_state(new_state)
+    change_state(current_state.unhandled_input(event))
 
 
 func get_states() -> Array[State]:
