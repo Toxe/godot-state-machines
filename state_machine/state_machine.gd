@@ -41,3 +41,7 @@ func change_state(new_state: State) -> void:
 
         current_state = new_state
         current_state.enter()
+
+
+func transition_to(next_state: State) -> void:
+    change_state(next_state)
