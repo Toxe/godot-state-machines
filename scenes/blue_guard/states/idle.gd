@@ -1,12 +1,6 @@
-extends State
+extends GuardState
 
 @export var walk_state: State = null
-
-var guard: BlueGuard = null
-
-
-func setup(_sm: StateMachine) -> void:
-    guard = owner as BlueGuard
 
 
 func enter() -> void:

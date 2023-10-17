@@ -1,15 +1,10 @@
-extends State
+extends GuardState
 
 const speed := 50.0
 
 @export var player_spotted_state: State = null
 
-var guard: BlueGuard = null
 var move_to := Vector2.ZERO
-
-
-func setup(_sm: StateMachine) -> void:
-    guard = owner as BlueGuard
 
 
 func enter() -> void:

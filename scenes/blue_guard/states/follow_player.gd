@@ -1,23 +1,18 @@
-extends State
+extends GuardState
 
 const speed := 100.0
 
 @export var player_lost_state: State = null
 
-var guard: BlueGuard = null
 var move_to := Vector2.ZERO
 var player_got_away := false
-
-
-func setup(_sm: StateMachine) -> void:
-    guard = owner as BlueGuard
 
 
 func enter() -> void:
     guard.get_node("PlayerDetector").scale = Vector2(1.5, 1.5)
     guard.get_node("AnimationPlayer").play("run")
 
-    move_to = get_player_position()
+    move_to = player.position
     player_got_away = false
 
     $Line2D.visible = true
@@ -34,7 +29,7 @@ func physics_process(_delta: float) -> State:
         return player_lost_state
 
     if guard.player_detected:
-        move_to = get_player_position()
+        move_to = player.position
         $PlayerLostTimer.stop()
     else:
         if $PlayerLostTimer.is_stopped():
@@ -49,11 +44,6 @@ func physics_process(_delta: float) -> State:
         guard.move_and_slide()
 
     return null
-
-
-func get_player_position() -> Vector2:
-    var player := get_tree().get_first_node_in_group("player") as Player
-    return player.position
 
 
 func update_line() -> void:
