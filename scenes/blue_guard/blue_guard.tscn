@@ -207,10 +207,12 @@ initial_state = NodePath("idle")
 [node name="idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state")]
 script = ExtResource("3_86u0u")
 walk_state = NodePath("../walk")
+animation = "idle"
 
 [node name="walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("player_spotted_state")]
 script = ExtResource("4_e2dmg")
 player_spotted_state = NodePath("../player_spotted")
+animation = "walk"
 
 [node name="Line2D" type="Line2D" parent="StateMachine/walk"]
 visible = false
@@ -220,10 +222,12 @@ default_color = Color(0.145098, 0.380392, 1, 0.521569)
 [node name="player_spotted" type="Node" parent="StateMachine" node_paths=PackedStringArray("follow_player_state")]
 script = ExtResource("5_r3dyb")
 follow_player_state = NodePath("../follow_player")
+animation = "player_spotted"
 
 [node name="follow_player" type="Node" parent="StateMachine" node_paths=PackedStringArray("player_lost_state")]
 script = ExtResource("6_rqn6i")
 player_lost_state = NodePath("../player_lost")
+animation = "run"
 
 [node name="Line2D" type="Line2D" parent="StateMachine/follow_player"]
 visible = false
@@ -237,6 +241,7 @@ one_shot = true
 [node name="player_lost" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("7_h5y3y")
 idle_state = NodePath("../idle")
+animation = "player_lost"
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 collision_layer = 0

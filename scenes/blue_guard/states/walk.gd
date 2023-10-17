@@ -8,7 +8,7 @@ var move_to := Vector2.ZERO
 
 
 func enter() -> void:
-    guard.get_node("AnimationPlayer").play("walk")
+    super()
     move_to = find_new_destination()
     $Line2D.visible = true
 

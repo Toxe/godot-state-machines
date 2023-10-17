@@ -9,8 +9,8 @@ var player_got_away := false
 
 
 func enter() -> void:
+    super()
     guard.get_node("PlayerDetector").scale = Vector2(1.5, 1.5)
-    guard.get_node("AnimationPlayer").play("run")
 
     move_to = player.position
     player_got_away = false
