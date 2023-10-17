@@ -14,7 +14,7 @@ func assert_all_exported_state_nodes_are_not_null() -> void:
         for prop: Dictionary in script.get_script_property_list():
             if prop["type"] == TYPE_OBJECT and prop["class_name"] == &"State":
                 if prop["usage"] & mask == mask:
-                    assert(get(prop["name"]) != null, "State \"%s\" of node \"%s\" is not set." % [prop["name"], name])
+                    assert(get(prop["name"]) != null, "\"%s\" state of %s node \"%s\" is not set." % [prop["name"], owner.name, name])
 
 
 # ---- State interface ------------------------------------------------------

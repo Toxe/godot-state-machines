@@ -5,7 +5,7 @@ var current_state: State = null
 
 
 func _ready() -> void:
-    assert(initial_state != null, "State machine initial state is not set.")
+    assert(initial_state != null, "%s state machine initial state is not set." % owner.name)
 
     for state: State in get_states():
         state.setup(self)
