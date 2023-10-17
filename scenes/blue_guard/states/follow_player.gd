@@ -19,6 +19,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+    super()
     guard.get_node("PlayerDetector").scale = Vector2(1.0, 1.0)
 
     $Line2D.visible = false

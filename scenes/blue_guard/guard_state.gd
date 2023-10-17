@@ -14,5 +14,15 @@ func setup() -> void:
 
 
 func enter() -> void:
-    if animation != &"":
+    if animation:
+        animation_player.animation_finished.connect(animation_finished)
         animation_player.play(animation)
+
+
+func exit() -> void:
+    if animation:
+        animation_player.animation_finished.disconnect(animation_finished)
+
+
+# ---- GuardState interface -------------------------------------------------
+func animation_finished(_anim_name: StringName) -> void: pass

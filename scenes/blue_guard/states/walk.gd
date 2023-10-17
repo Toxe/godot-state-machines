@@ -14,6 +14,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+    super()
     $Line2D.visible = false
 
 
