@@ -8,7 +8,8 @@ func _ready() -> void:
     assert(initial_state != null, "%s state machine initial state is not set." % owner.name)
 
     for state: State in get_states():
-        state.setup(self)
+        state.state_machine = self
+        state.setup()
 
     change_state(initial_state)
 

@@ -1,5 +1,7 @@
 class_name State extends Node
 
+var state_machine: StateMachine = null
+
 
 func _ready() -> void:
     if OS.has_feature("debug"):
@@ -18,7 +20,7 @@ func assert_all_exported_state_nodes_are_not_null() -> void:
 
 
 # ---- State interface ------------------------------------------------------
-func setup(_sm: StateMachine) -> void: pass
+func setup() -> void: pass
 
 func enter() -> void: pass
 func exit() -> void: pass

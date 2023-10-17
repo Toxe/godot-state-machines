@@ -5,8 +5,8 @@ const speed := 300.0
 var player: Player = null
 
 
-func setup(_sm: StateMachine) -> void:
-    player = owner as Player
+func setup() -> void:
+    player = state_machine.owner as Player
 
 
 func physics_process(_delta: float) -> State:
