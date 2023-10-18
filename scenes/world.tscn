@@ -45,8 +45,5 @@ scale = Vector2(1, 8)
 [node name="Player" parent="." instance=ExtResource("2_x0ahe")]
 position = Vector2(75, 289)
 
-[node name="BlueGuard1" parent="." instance=ExtResource("3_atp2t")]
+[node name="BlueGuard" parent="." instance=ExtResource("3_atp2t")]
 position = Vector2(1100, 131)
-
-[node name="BlueGuard2" parent="." instance=ExtResource("3_atp2t")]
-position = Vector2(1195, 621)
