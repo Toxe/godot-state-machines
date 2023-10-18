@@ -1,0 +1,317 @@
+[gd_scene load_steps=14 format=3 uid="uid://da5hmj40ofv2g"]
+
+[ext_resource type="Script" path="res://scenes/red_guard/red_guard.gd" id="1_ojsrk"]
+[ext_resource type="Texture2D" uid="uid://b75wqpqc0yiuh" path="res://assets/images/guard/player_detection_area.svg" id="2_mifmn"]
+[ext_resource type="Texture2D" uid="uid://vn8q8kfw6tkp" path="res://assets/images/guard/player_spotted.svg" id="3_2vaa2"]
+[ext_resource type="Texture2D" uid="uid://13cd1hx1fosw" path="res://assets/images/guard/player_lost.svg" id="4_075pv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_85msq"]
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l83e1"]
+radius = 300.0
+
+[sub_resource type="Animation" id="Animation_bedvk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/ColorRect4:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-12, -18)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/ColorRect5:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-12, 12)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerSpottedIcon:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerLostIcon:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_weh2p"]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/ColorRect4:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-12, -18)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/ColorRect5:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-12, 12)]
+}
+
+[sub_resource type="Animation" id="Animation_rwyc0"]
+resource_name = "player_lost"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerLostIcon:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_0khst"]
+resource_name = "player_spotted"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSpottedIcon:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_doall"]
+resource_name = "run"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/ColorRect4:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-19, -18), Vector2(1, -18)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/ColorRect5:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 12), Vector2(-19, 12)]
+}
+
+[sub_resource type="Animation" id="Animation_20aey"]
+resource_name = "walk"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/ColorRect4:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-16, -18), Vector2(-6, -18)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/ColorRect5:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-6, 12), Vector2(-16, 12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k0opl"]
+_data = {
+"RESET": SubResource("Animation_bedvk"),
+"idle": SubResource("Animation_weh2p"),
+"player_lost": SubResource("Animation_rwyc0"),
+"player_spotted": SubResource("Animation_0khst"),
+"run": SubResource("Animation_doall"),
+"walk": SubResource("Animation_20aey")
+}
+
+[node name="RedGuard" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_ojsrk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_85msq")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_l83e1")
+
+[node name="RayCast2D1" type="RayCast2D" parent="PlayerDetector"]
+enabled = false
+target_position = Vector2(300, 0)
+collision_mask = 7
+
+[node name="RayCast2D2" type="RayCast2D" parent="PlayerDetector"]
+enabled = false
+target_position = Vector2(300, -20)
+collision_mask = 7
+
+[node name="RayCast2D3" type="RayCast2D" parent="PlayerDetector"]
+enabled = false
+target_position = Vector2(300, 20)
+collision_mask = 7
+
+[node name="Polygon2D" type="Polygon2D" parent="PlayerDetector"]
+z_index = 4
+color = Color(1, 1, 0, 0.141176)
+polygon = PackedVector2Array(300, -20, 300, 0, 300, 20, 0, 0)
+
+[node name="PlayerDetectionAreaSprite" type="Sprite2D" parent="PlayerDetector"]
+modulate = Color(1, 1, 0, 0.137255)
+z_index = 4
+texture = ExtResource("2_mifmn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k0opl")
+}
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="ColorRect4" type="ColorRect" parent="Sprite"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -18.0
+offset_right = 11.9999
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.592157, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="Sprite"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = 12.0
+offset_right = 12.0005
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.592157, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Sprite"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -20.0
+offset_right = 12.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.858824, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Sprite"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -11.0
+offset_right = 17.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.682353, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Sprite"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -11.0
+offset_right = 17.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.47451, 0, 0, 1)
+
+[node name="PlayerSpottedIcon" type="Sprite2D" parent="."]
+visible = false
+z_index = 5
+position = Vector2(0, -80)
+texture = ExtResource("3_2vaa2")
+
+[node name="PlayerLostIcon" type="Sprite2D" parent="."]
+visible = false
+z_index = 5
+position = Vector2(0, -80)
+texture = ExtResource("4_075pv")
