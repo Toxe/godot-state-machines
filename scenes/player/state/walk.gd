@@ -1,4 +1,4 @@
-extends State
+extends MyState
 
 const speed := 300.0
 
@@ -9,7 +9,7 @@ func setup() -> void:
     player = state_machine.owner as Player
 
 
-func physics_process(_delta: float) -> State:
+func physics_process(_delta: float) -> MyState:
     player.velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * speed
     player.move_and_slide()
     return null

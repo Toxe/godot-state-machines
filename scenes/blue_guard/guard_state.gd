@@ -1,4 +1,4 @@
-class_name GuardState extends State
+class_name GuardState extends MyState
 
 @export var animation: StringName = &""
 

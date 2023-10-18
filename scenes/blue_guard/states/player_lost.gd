@@ -1,6 +1,6 @@
 extends GuardState
 
-@export var idle_state: State = null
+@export var idle_state: MyState = null
 
 
 func animation_finished(_anim_name: StringName) -> void:

@@ -2,7 +2,7 @@ extends GuardState
 
 const speed := 100.0
 
-@export var player_lost_state: State = null
+@export var player_lost_state: MyState = null
 
 var move_to := Vector2.ZERO
 var player_got_away := false
@@ -25,7 +25,7 @@ func exit() -> void:
     $Line2D.visible = false
 
 
-func physics_process(_delta: float) -> State:
+func physics_process(_delta: float) -> MyState:
     if player_got_away:
         return player_lost_state
 
