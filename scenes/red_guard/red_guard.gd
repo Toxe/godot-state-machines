@@ -65,6 +65,10 @@ func _on_player_detector_body_exited(body: Node2D) -> void:
             raycast.enabled = false
 
 
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
+    state_chart.send_event("animation_finished")
+
+
 # ---- walk state -----------------------------------------------------------
 func _on_walk_state_entered() -> void:
     animation_player.play("walk")
@@ -96,20 +100,6 @@ func _on_walk_state_physics_processing(_delta: float) -> void:
             move_to = find_new_destination()
     else:
         move_to = find_new_destination()
-
-
-# ---- player_spotted state -------------------------------------------------
-func _on_player_spotted_state_entered() -> void:
-    animation_player.play("player_spotted")
-    animation_player.animation_finished.connect(_on_player_spotted_animation_finished)
-
-
-func _on_player_spotted_state_exited() -> void:
-    animation_player.animation_finished.disconnect(_on_player_spotted_animation_finished)
-
-
-func _on_player_spotted_animation_finished(_anim_name: StringName) -> void:
-        state_chart.send_event("follow_player")
 
 
 # ---- follow_player state --------------------------------------------------
@@ -150,17 +140,3 @@ func _on_follow_player_state_physics_processing(_delta: float) -> void:
 
 func _on_player_lost_timer_timeout() -> void:
     player_got_away = true
-
-
-# ---- player_lost state ----------------------------------------------------
-func _on_player_lost_state_entered() -> void:
-    animation_player.play("player_lost")
-    animation_player.animation_finished.connect(_on_player_lost_animation_finished)
-
-
-func _on_player_lost_state_exited() -> void:
-    animation_player.animation_finished.disconnect(_on_player_lost_animation_finished)
-
-
-func _on_player_lost_animation_finished(_anim_name: StringName) -> void:
-        state_chart.send_event("idle")

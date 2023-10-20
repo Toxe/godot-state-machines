@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://da5hmj40ofv2g"]
+[gd_scene load_steps=19 format=3 uid="uid://da5hmj40ofv2g"]
 
 [ext_resource type="Script" path="res://scenes/red_guard/red_guard.gd" id="1_ojsrk"]
 [ext_resource type="Texture2D" uid="uid://b75wqpqc0yiuh" path="res://assets/images/guard/player_detection_area.svg" id="2_mifmn"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://13cd1hx1fosw" path="res://assets/images/guard/player_lost.svg" id="4_075pv"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_136bi"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_dvtik"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/animation_player_state.gd" id="6_05oau"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_85msq"]
 radius = 20.0
@@ -222,12 +223,14 @@ to = NodePath("../../player_spotted")
 event = &"player_spotted"
 
 [node name="player_spotted" type="Node" parent="StateChart/CompoundState"]
-script = ExtResource("4_136bi")
+script = ExtResource("6_05oau")
+animation_player = NodePath("../../../AnimationPlayer")
+animation_name = &"player_spotted"
 
 [node name="to_follow_player" type="Node" parent="StateChart/CompoundState/player_spotted"]
 script = ExtResource("5_dvtik")
 to = NodePath("../../follow_player")
-event = &"follow_player"
+event = &"animation_finished"
 
 [node name="follow_player" type="Node" parent="StateChart/CompoundState"]
 script = ExtResource("4_136bi")
@@ -238,12 +241,14 @@ to = NodePath("../../player_lost")
 event = &"player_lost"
 
 [node name="player_lost" type="Node" parent="StateChart/CompoundState"]
-script = ExtResource("4_136bi")
+script = ExtResource("6_05oau")
+animation_player = NodePath("../../../AnimationPlayer")
+animation_name = &"player_lost"
 
 [node name="to_idle" type="Node" parent="StateChart/CompoundState/player_lost"]
 script = ExtResource("5_dvtik")
 to = NodePath("../../idle")
-event = &"idle"
+event = &"animation_finished"
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 collision_layer = 0
@@ -383,13 +388,10 @@ default_color = Color(1, 0, 0, 0.368627)
 [connection signal="state_entered" from="StateChart/CompoundState/walk" to="." method="_on_walk_state_entered"]
 [connection signal="state_exited" from="StateChart/CompoundState/walk" to="." method="_on_walk_state_exited"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/walk" to="." method="_on_walk_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/CompoundState/player_spotted" to="." method="_on_player_spotted_state_entered"]
-[connection signal="state_exited" from="StateChart/CompoundState/player_spotted" to="." method="_on_player_spotted_state_exited"]
 [connection signal="state_entered" from="StateChart/CompoundState/follow_player" to="." method="_on_follow_player_state_entered"]
 [connection signal="state_exited" from="StateChart/CompoundState/follow_player" to="." method="_on_follow_player_state_exited"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/follow_player" to="." method="_on_follow_player_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/CompoundState/player_lost" to="." method="_on_player_lost_state_entered"]
-[connection signal="state_exited" from="StateChart/CompoundState/player_lost" to="." method="_on_player_lost_state_exited"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="PlayerLostTimer" to="." method="_on_player_lost_timer_timeout"]
