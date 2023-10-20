@@ -2,6 +2,8 @@ extends Node
 
 
 func _ready() -> void:
+    $StateChartDebugger/TabContainer.tab_focus_mode = Control.FOCUS_NONE
+    $StateChartDebugger.visible = false
     create_window_title_update_timer()
     update_window_title()
 
@@ -20,3 +22,7 @@ func create_window_title_update_timer() -> void:
 
 func update_window_title() -> void:
     get_window().title = "%s [%d FPS]" % [ProjectSettings.get_setting("application/config/name"), Performance.get_monitor(Performance.TIME_FPS)]
+
+
+func _on_toggle_state_chart_debugger_button_pressed() -> void:
+    $StateChartDebugger.visible = !$StateChartDebugger.visible

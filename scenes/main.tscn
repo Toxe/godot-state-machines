@@ -1,9 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdlldkuhd7k7d"]
+[gd_scene load_steps=4 format=3 uid="uid://cdlldkuhd7k7d"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_pm436"]
 [ext_resource type="PackedScene" uid="uid://dn18x5gkv5ki6" path="res://scenes/world.tscn" id="2_3s2iw"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="3_tl2cv"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_pm436")
 
 [node name="World" parent="." instance=ExtResource("2_3s2iw")]
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("3_tl2cv")]
+z_index = 10
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -720.0
+offset_bottom = -40.0
+initial_node_to_watch = NodePath("../World")
+
+[node name="ToggleStateChartDebuggerButton" type="Button" parent="."]
+offset_left = 330.0
+offset_top = 29.0
+offset_right = 554.0
+offset_bottom = 60.0
+focus_mode = 0
+text = "toggle State Chart debugger"
+
+[connection signal="pressed" from="ToggleStateChartDebuggerButton" to="." method="_on_toggle_state_chart_debugger_button_pressed"]
