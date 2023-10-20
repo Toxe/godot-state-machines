@@ -1,9 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://da5hmj40ofv2g"]
+[gd_scene load_steps=18 format=3 uid="uid://da5hmj40ofv2g"]
 
 [ext_resource type="Script" path="res://scenes/red_guard/red_guard.gd" id="1_ojsrk"]
 [ext_resource type="Texture2D" uid="uid://b75wqpqc0yiuh" path="res://assets/images/guard/player_detection_area.svg" id="2_mifmn"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_na272"]
 [ext_resource type="Texture2D" uid="uid://vn8q8kfw6tkp" path="res://assets/images/guard/player_spotted.svg" id="3_2vaa2"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_0682n"]
 [ext_resource type="Texture2D" uid="uid://13cd1hx1fosw" path="res://assets/images/guard/player_lost.svg" id="4_075pv"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_136bi"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_dvtik"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_85msq"]
 radius = 20.0
@@ -195,6 +199,52 @@ script = ExtResource("1_ojsrk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_85msq")
 
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_na272")
+
+[node name="CompoundState" type="Node" parent="StateChart"]
+script = ExtResource("3_0682n")
+initial_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_136bi")
+
+[node name="to_walk" type="Node" parent="StateChart/CompoundState/idle"]
+script = ExtResource("5_dvtik")
+to = NodePath("../../walk")
+
+[node name="walk" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_136bi")
+
+[node name="to_player_spotted" type="Node" parent="StateChart/CompoundState/walk"]
+script = ExtResource("5_dvtik")
+to = NodePath("../../player_spotted")
+event = &"player_spotted"
+
+[node name="player_spotted" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_136bi")
+
+[node name="to_follow_player" type="Node" parent="StateChart/CompoundState/player_spotted"]
+script = ExtResource("5_dvtik")
+to = NodePath("../../follow_player")
+event = &"follow_player"
+
+[node name="follow_player" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_136bi")
+
+[node name="to_player_lost" type="Node" parent="StateChart/CompoundState/follow_player"]
+script = ExtResource("5_dvtik")
+to = NodePath("../../player_lost")
+event = &"player_lost"
+
+[node name="player_lost" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_136bi")
+
+[node name="to_idle" type="Node" parent="StateChart/CompoundState/player_lost"]
+script = ExtResource("5_dvtik")
+to = NodePath("../../idle")
+event = &"idle"
+
 [node name="PlayerDetector" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
@@ -304,6 +354,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.47451, 0, 0, 1)
 
+[node name="PlayerLostTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [node name="PlayerSpottedIcon" type="Sprite2D" parent="."]
 visible = false
 z_index = 5
@@ -315,3 +369,27 @@ visible = false
 z_index = 5
 position = Vector2(0, -80)
 texture = ExtResource("4_075pv")
+
+[node name="BlueLine2D" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(30, 0, 0, 0)
+default_color = Color(0.145098, 0.380392, 1, 0.521569)
+
+[node name="RedLine2D" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(30, 0, 0, 0)
+default_color = Color(1, 0, 0, 0.368627)
+
+[connection signal="state_entered" from="StateChart/CompoundState/walk" to="." method="_on_walk_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/walk" to="." method="_on_walk_state_exited"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/walk" to="." method="_on_walk_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/CompoundState/player_spotted" to="." method="_on_player_spotted_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/player_spotted" to="." method="_on_player_spotted_state_exited"]
+[connection signal="state_entered" from="StateChart/CompoundState/follow_player" to="." method="_on_follow_player_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/follow_player" to="." method="_on_follow_player_state_exited"]
+[connection signal="state_physics_processing" from="StateChart/CompoundState/follow_player" to="." method="_on_follow_player_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/CompoundState/player_lost" to="." method="_on_player_lost_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/player_lost" to="." method="_on_player_lost_state_exited"]
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
+[connection signal="timeout" from="PlayerLostTimer" to="." method="_on_player_lost_timer_timeout"]
