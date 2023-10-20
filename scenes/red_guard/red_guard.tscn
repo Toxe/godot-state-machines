@@ -355,7 +355,7 @@ grow_vertical = 2
 color = Color(0.47451, 0, 0, 1)
 
 [node name="PlayerLostTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 5.0
 one_shot = true
 
 [node name="PlayerSpottedIcon" type="Sprite2D" parent="."]
