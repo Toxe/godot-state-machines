@@ -43,14 +43,9 @@ func find_new_destination() -> Vector2:
     return Vector2(x, y)
 
 
-func update_blue_line() -> void:
-    $BlueLine2D.points[1] = move_to * transform
-    $BlueLine2D.visible = position.distance_to(move_to) > 30.0
-
-
-func update_red_line() -> void:
-    $RedLine2D.points[1] = move_to * transform
-    $RedLine2D.visible = position.distance_to(move_to) > 30.0
+func update_line(line: Line2D) -> void:
+    line.points[1] = move_to * transform
+    line.visible = position.distance_to(move_to) > 30.0
 
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
@@ -86,7 +81,7 @@ func _on_walk_state_physics_processing(_delta: float) -> void:
         state_chart.send_event("player_spotted")
         return
 
-    update_blue_line()
+    update_line($BlueLine2D)
 
     velocity = position.direction_to(move_to) * walk_speed
     look_at(move_to)
@@ -147,7 +142,7 @@ func _on_follow_player_state_physics_processing(_delta: float) -> void:
     velocity = position.direction_to(move_to) * run_speed
     look_at(move_to)
 
-    update_red_line()
+    update_line($RedLine2D)
 
     if position.distance_to(move_to) > 5:
         move_and_slide()
