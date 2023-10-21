@@ -2,18 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4ojtah20jtxc"
-path="res://.godot/imported/atomic_state.svg-5ab16e5747cef5b5980c4bf84ef9b1af.ctex"
+uid="uid://t4jcjthwq04d"
+path="res://.godot/imported/expression_guard.svg-e0dc5b3c566ccd2411887df3fe1bbb2b.ctex"
 metadata={
-"editor_scale": 2.0,
 "has_editor_variant": true,
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/godot_state_charts/atomic_state.svg"
-dest_files=["res://.godot/imported/atomic_state.svg-5ab16e5747cef5b5980c4bf84ef9b1af.ctex"]
+source_file="res://addons/godot_state_charts/expression_guard.svg"
+dest_files=["res://.godot/imported/expression_guard.svg-e0dc5b3c566ccd2411887df3fe1bbb2b.ctex"]
 
 [params]
 

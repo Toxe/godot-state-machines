@@ -2,18 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t4jcjthwq04d"
-path="res://.godot/imported/expression_guard.svg-e0dc5b3c566ccd2411887df3fe1bbb2b.ctex"
+uid="uid://bbudjoa3ds4qj"
+path="res://.godot/imported/compound_state.svg-84780d78ec1f15e1cbb9d20f4df031a7.ctex"
 metadata={
-"editor_scale": 2.0,
 "has_editor_variant": true,
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/godot_state_charts/expression_guard.svg"
-dest_files=["res://.godot/imported/expression_guard.svg-e0dc5b3c566ccd2411887df3fe1bbb2b.ctex"]
+source_file="res://addons/godot_state_charts/compound_state.svg"
+dest_files=["res://.godot/imported/compound_state.svg-84780d78ec1f15e1cbb9d20f4df031a7.ctex"]
 
 [params]
 

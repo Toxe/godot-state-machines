@@ -2,18 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vfbywtgh66nb"
-path="res://.godot/imported/state_chart.svg-5c268dd045b20d73dfacd5cdf7606676.ctex"
+uid="uid://dsa1nco51br8d"
+path="res://.godot/imported/parallel_state.svg-33f40e94bafae79f072d67563e0adcd3.ctex"
 metadata={
-"editor_scale": 2.0,
 "has_editor_variant": true,
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/godot_state_charts/state_chart.svg"
-dest_files=["res://.godot/imported/state_chart.svg-5c268dd045b20d73dfacd5cdf7606676.ctex"]
+source_file="res://addons/godot_state_charts/parallel_state.svg"
+dest_files=["res://.godot/imported/parallel_state.svg-33f40e94bafae79f072d67563e0adcd3.ctex"]
 
 [params]
 

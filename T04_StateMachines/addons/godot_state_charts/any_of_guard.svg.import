@@ -2,18 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnjw3kjyx1gbb"
-path="res://.godot/imported/not_guard.svg-b2d127d6ec93eb4ce2d86c4aadb7bbfe.ctex"
+uid="uid://dbf5ogymlonu4"
+path="res://.godot/imported/any_of_guard.svg-3b1aa026a997dbfebde2cc5993b5c820.ctex"
 metadata={
-"editor_scale": 2.0,
 "has_editor_variant": true,
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/godot_state_charts/not_guard.svg"
-dest_files=["res://.godot/imported/not_guard.svg-b2d127d6ec93eb4ce2d86c4aadb7bbfe.ctex"]
+source_file="res://addons/godot_state_charts/any_of_guard.svg"
+dest_files=["res://.godot/imported/any_of_guard.svg-3b1aa026a997dbfebde2cc5993b5c820.ctex"]
 
 [params]
 
