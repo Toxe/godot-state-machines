@@ -7,3 +7,5 @@ A simple comparison of a custom state machine vs. the [Godot State Charts](https
 Move with WASD or cursor keys.
 
 Playable web version: https://toxe.itch.io/godot-state-machines-vs-state-charts
+
+Video: https://www.youtube.com/watch?v=RIc9gSU-JHE
