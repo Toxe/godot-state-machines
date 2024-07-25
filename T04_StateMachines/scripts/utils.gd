@@ -31,7 +31,6 @@ static func node_notification_name(what: int) -> String:
         Node.NOTIFICATION_POST_ENTER_TREE: return "post_enter_tree"
         Node.NOTIFICATION_DISABLED: return "disabled"
         Node.NOTIFICATION_ENABLED: return "enabled"
-        Node.NOTIFICATION_NODE_RECACHE_REQUESTED: return "node_recache_requested"
         Node.NOTIFICATION_WM_MOUSE_ENTER: return "wm_mouse_enter"
         Node.NOTIFICATION_WM_MOUSE_EXIT: return "wm_mouse_exit"
         Node.NOTIFICATION_WM_WINDOW_FOCUS_IN: return "wm_window_focus_in"
