@@ -1,14 +1,14 @@
 [gd_scene load_steps=19 format=3 uid="uid://da5hmj40ofv2g"]
 
-[ext_resource type="Script" path="res://scenes/red_guard/red_guard.gd" id="1_ojsrk"]
+[ext_resource type="Script" uid="uid://dtkg21ni3y4ub" path="res://scenes/red_guard/red_guard.gd" id="1_ojsrk"]
 [ext_resource type="Texture2D" uid="uid://b75wqpqc0yiuh" path="res://assets/images/guard/player_detection_area.svg" id="2_mifmn"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_na272"]
+[ext_resource type="Script" uid="uid://l558bodffkh1" path="res://addons/godot_state_charts/state_chart.gd" id="2_na272"]
 [ext_resource type="Texture2D" uid="uid://vn8q8kfw6tkp" path="res://assets/images/guard/player_spotted.svg" id="3_2vaa2"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_0682n"]
+[ext_resource type="Script" uid="uid://b0gkvc0mvc48v" path="res://addons/godot_state_charts/compound_state.gd" id="3_0682n"]
 [ext_resource type="Texture2D" uid="uid://13cd1hx1fosw" path="res://assets/images/guard/player_lost.svg" id="4_075pv"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_136bi"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_dvtik"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/animation_player_state.gd" id="6_05oau"]
+[ext_resource type="Script" uid="uid://meg8ky81pk4s" path="res://addons/godot_state_charts/atomic_state.gd" id="4_136bi"]
+[ext_resource type="Script" uid="uid://b33udbo8rmd5a" path="res://addons/godot_state_charts/transition.gd" id="5_dvtik"]
+[ext_resource type="Script" uid="uid://cyxwbti266uh7" path="res://addons/godot_state_charts/animation_player_state.gd" id="6_05oau"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_85msq"]
 radius = 20.0
@@ -184,12 +184,12 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k0opl"]
 _data = {
-"RESET": SubResource("Animation_bedvk"),
-"idle": SubResource("Animation_weh2p"),
-"player_lost": SubResource("Animation_rwyc0"),
-"player_spotted": SubResource("Animation_0khst"),
-"run": SubResource("Animation_doall"),
-"walk": SubResource("Animation_20aey")
+&"RESET": SubResource("Animation_bedvk"),
+&"idle": SubResource("Animation_weh2p"),
+&"player_lost": SubResource("Animation_rwyc0"),
+&"player_spotted": SubResource("Animation_0khst"),
+&"run": SubResource("Animation_doall"),
+&"walk": SubResource("Animation_20aey")
 }
 
 [node name="RedGuard" type="CharacterBody2D"]

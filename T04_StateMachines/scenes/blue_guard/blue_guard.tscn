@@ -1,12 +1,12 @@
 [gd_scene load_steps=20 format=3 uid="uid://bvlji4x1raroh"]
 
-[ext_resource type="Script" path="res://scenes/blue_guard/blue_guard.gd" id="1_7bfl7"]
+[ext_resource type="Script" uid="uid://c6c2vh2u28ysh" path="res://scenes/blue_guard/blue_guard.gd" id="1_7bfl7"]
 [ext_resource type="PackedScene" uid="uid://c1dv836kurumi" path="res://state_machine/state_machine.tscn" id="2_2jvxd"]
-[ext_resource type="Script" path="res://scenes/blue_guard/states/idle.gd" id="3_86u0u"]
-[ext_resource type="Script" path="res://scenes/blue_guard/states/walk.gd" id="4_e2dmg"]
-[ext_resource type="Script" path="res://scenes/blue_guard/states/player_spotted.gd" id="5_r3dyb"]
-[ext_resource type="Script" path="res://scenes/blue_guard/states/follow_player.gd" id="6_rqn6i"]
-[ext_resource type="Script" path="res://scenes/blue_guard/states/player_lost.gd" id="7_h5y3y"]
+[ext_resource type="Script" uid="uid://nw8gy2bblkpn" path="res://scenes/blue_guard/states/idle.gd" id="3_86u0u"]
+[ext_resource type="Script" uid="uid://ctfiswmn7jvtc" path="res://scenes/blue_guard/states/walk.gd" id="4_e2dmg"]
+[ext_resource type="Script" uid="uid://gjgfk30nxk07" path="res://scenes/blue_guard/states/player_spotted.gd" id="5_r3dyb"]
+[ext_resource type="Script" uid="uid://biku51ggdd27h" path="res://scenes/blue_guard/states/follow_player.gd" id="6_rqn6i"]
+[ext_resource type="Script" uid="uid://bu2drrocs3hbb" path="res://scenes/blue_guard/states/player_lost.gd" id="7_h5y3y"]
 [ext_resource type="Texture2D" uid="uid://vn8q8kfw6tkp" path="res://assets/images/guard/player_spotted.svg" id="8_v6sjr"]
 [ext_resource type="Texture2D" uid="uid://13cd1hx1fosw" path="res://assets/images/guard/player_lost.svg" id="9_3wiw8"]
 [ext_resource type="Texture2D" uid="uid://b75wqpqc0yiuh" path="res://assets/images/guard/player_detection_area.svg" id="10_nogrx"]
@@ -185,12 +185,12 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k0opl"]
 _data = {
-"RESET": SubResource("Animation_bedvk"),
-"idle": SubResource("Animation_weh2p"),
-"player_lost": SubResource("Animation_rwyc0"),
-"player_spotted": SubResource("Animation_0khst"),
-"run": SubResource("Animation_doall"),
-"walk": SubResource("Animation_20aey")
+&"RESET": SubResource("Animation_bedvk"),
+&"idle": SubResource("Animation_weh2p"),
+&"player_lost": SubResource("Animation_rwyc0"),
+&"player_spotted": SubResource("Animation_0khst"),
+&"run": SubResource("Animation_doall"),
+&"walk": SubResource("Animation_20aey")
 }
 
 [node name="BlueGuard" type="CharacterBody2D"]
