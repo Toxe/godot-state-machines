@@ -7,22 +7,25 @@ const speed := 100.0
 var move_to := Vector2.ZERO
 var player_got_away := false
 
+@onready var line: Line2D = $Line2D
+@onready var player_lost_timer: Timer = $PlayerLostTimer
+
 
 func enter() -> void:
     super()
-    guard.get_node("PlayerDetector").scale = Vector2(1.5, 1.5)
+    (guard.get_node("PlayerDetector") as Area2D).scale = Vector2(1.5, 1.5)
 
     move_to = player.position
     player_got_away = false
 
-    $Line2D.visible = true
+    line.visible = true
 
 
 func exit() -> void:
     super()
-    guard.get_node("PlayerDetector").scale = Vector2(1.0, 1.0)
+    (guard.get_node("PlayerDetector") as Area2D).scale = Vector2(1.0, 1.0)
 
-    $Line2D.visible = false
+    line.visible = false
 
 
 func physics_process(_delta: float) -> MyState:
@@ -31,10 +34,10 @@ func physics_process(_delta: float) -> MyState:
 
     if guard.player_detected:
         move_to = player.position
-        $PlayerLostTimer.stop()
+        player_lost_timer.stop()
     else:
-        if $PlayerLostTimer.is_stopped():
-            $PlayerLostTimer.start()
+        if player_lost_timer.is_stopped():
+            player_lost_timer.start()
 
     guard.velocity = guard.position.direction_to(move_to) * speed
     guard.look_at(move_to)
@@ -48,9 +51,9 @@ func physics_process(_delta: float) -> MyState:
 
 
 func update_line() -> void:
-    $Line2D.points[0] = guard.position + guard.transform.x * 30.0
-    $Line2D.points[1] = move_to
-    $Line2D.visible = guard.position.distance_to($Line2D.points[1]) > 30.0
+    line.points[0] = guard.position + guard.transform.x * 30.0
+    line.points[1] = move_to
+    line.visible = guard.position.distance_to(line.points[1]) > 30.0
 
 
 func _on_player_lost_timer_timeout() -> void:

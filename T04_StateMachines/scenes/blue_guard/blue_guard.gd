@@ -3,17 +3,20 @@ class_name BlueGuard extends CharacterBody2D
 var player_in_range := false
 var player_detected := false
 
+@onready var player_spotted_icon: Sprite2D = $PlayerSpottedIcon
+@onready var player_lost_icon: Sprite2D = $PlayerLostIcon
+
 
 func _process(_delta: float) -> void:
-    if $PlayerSpottedIcon.visible:
-        $PlayerSpottedIcon.global_position = global_position + Vector2(0, -80)
-        $PlayerSpottedIcon.global_rotation = 0
-    if $PlayerLostIcon.visible:
-        $PlayerLostIcon.global_position = global_position + Vector2(0, -80)
-        $PlayerLostIcon.global_rotation = 0
+    if player_spotted_icon.visible:
+        player_spotted_icon.global_position = global_position + Vector2(0, -80)
+        player_spotted_icon.global_rotation = 0
+    if player_lost_icon.visible:
+        player_lost_icon.global_position = global_position + Vector2(0, -80)
+        player_lost_icon.global_rotation = 0
 
     var player := get_tree().get_first_node_in_group("player") as Player
-    $PlayerDetector.look_at(player.position)
+    ($PlayerDetector as Area2D).look_at(player.position)
 
 
 func _physics_process(_delta: float) -> void:

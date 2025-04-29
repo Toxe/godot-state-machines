@@ -6,16 +6,18 @@ const speed := 50.0
 
 var move_to := Vector2.ZERO
 
+@onready var line: Line2D = $Line2D
+
 
 func enter() -> void:
     super()
     move_to = find_new_destination()
-    $Line2D.visible = true
+    line.visible = true
 
 
 func exit() -> void:
     super()
-    $Line2D.visible = false
+    line.visible = false
 
 
 func physics_process(_delta: float) -> MyState:
@@ -42,12 +44,14 @@ func physics_process(_delta: float) -> MyState:
 
 
 func find_new_destination() -> Vector2:
-    var x := randf_range(50, ProjectSettings.get_setting("display/window/size/viewport_width") - 50)
-    var y := randf_range(50, ProjectSettings.get_setting("display/window/size/viewport_height") - 50)
+    var viewport_width: float = ProjectSettings.get_setting("display/window/size/viewport_width")
+    var viewport_height: float = ProjectSettings.get_setting("display/window/size/viewport_height")
+    var x := randf_range(50, viewport_width - 50)
+    var y := randf_range(50, viewport_height - 50)
     return Vector2(x, y)
 
 
 func update_line() -> void:
-    $Line2D.points[0] = guard.position + guard.transform.x * 30.0
-    $Line2D.points[1] = move_to
-    $Line2D.visible = guard.position.distance_to($Line2D.points[1]) > 30.0
+    line.points[0] = guard.position + guard.transform.x * 30.0
+    line.points[1] = move_to
+    line.visible = guard.position.distance_to(line.points[1]) > 30.0

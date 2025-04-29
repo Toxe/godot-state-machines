@@ -1,9 +1,12 @@
 extends Node
 
+@onready var state_chart_debugger: MarginContainer = $StateChartDebugger
+@onready var state_chart_debugger_tab_container: TabContainer = $StateChartDebugger/TabContainer
+
 
 func _ready() -> void:
-    $StateChartDebugger/TabContainer.tab_focus_mode = Control.FOCUS_NONE
-    $StateChartDebugger.visible = false
+    state_chart_debugger.visible = false
+    state_chart_debugger_tab_container.tab_focus_mode = Control.FOCUS_NONE
     create_window_title_update_timer()
     update_window_title()
 
@@ -25,4 +28,4 @@ func update_window_title() -> void:
 
 
 func _on_toggle_state_chart_debugger_button_pressed() -> void:
-    $StateChartDebugger.visible = !$StateChartDebugger.visible
+    state_chart_debugger.visible = !state_chart_debugger.visible
